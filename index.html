@@ -1,0 +1,365 @@
+<html>
+
+<head>
+	<title>Web Peringatan Dini BMKG KOTIM</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="images/LogoBMKG.webp">
+	<link rel="icon" href="images/LogoBMKG.png	" type="image/x-icon	">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
+	
+</head>
+
+<body>
+	<div class="page-shell">
+		<div class="topbar">
+			<div>
+				<h1>Dashboard Peringatan Dini BMKG</h1>
+				<p>Monitoring wilayah Kotawaringin Timur dan Seruyan secara bersamaan</p>
+			</div>
+			<button id="download" class="btn btn-light">Download</button>
+		</div>
+
+		<div class="tab-shell">
+			<ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+				<li class="nav-item" role="presentation">
+					<button class="nav-link active" id="form-tab" data-bs-toggle="tab" data-bs-target="#form" type="button"
+						role="tab" aria-controls="form" aria-selected="true">Form</button>
+				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" id="view-tab" data-bs-toggle="tab" data-bs-target="#view" type="button" role="tab"
+						aria-controls="view" aria-selected="false">View</button>
+				</li>
+			</ul>
+
+			<div class="tab-content" id="myTabContent">
+				<div class="tab-pane fade show active" id="form" role="tabpanel" aria-labelledby="form-tab">
+					<div class="dashboard-grid">
+						<div class="panel-card">
+							<h2 class="panel-title">KABUPATEN KOTIM</h2>
+							<div class="control-block">
+								<label>Text Method</label>
+								<textarea class="form-control" id="text-method-kotim" rows="5"></textarea>
+
+								<div class="d-flex align-items-center gap-2">
+ 									 <div style="max-width: 200px;">
+										<label>Jam</label>
+    									<input type="text" class="form-control" onchange="timeToSet('time-kotim',this)" id="timeSet" value="WIB">
+ 									 </div>
+  										<button class="btn btn-light mt-4" onclick="textToMap('kotim')">Convert</button>
+								</div>
+							</div>
+							<div class="district-grid">
+								<div class="district-card">
+									<p>Antang Kalang</p>
+									<select class="form-select antangkalang" onchange="setMap('antangkalang',this)">
+										<option value="asset/img/printmap/kotim/antangkalang1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/kotim/antangkalang2.png">WILAYAH POTENSI MELUAS</option>
+                                        
+										<option value="asset/img/printmap/kotim/antangkalang.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Pulau Hanaut</p>
+									<select class="form-select pulauhanaut" onchange="setMap('pulauhanaut',this)">
+										<option value="asset/img/printmap/kotim/pulauhanaut1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/kotim/pulauhanaut2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/kotim/pulauhanaut.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Baamang</p>
+									<select class="form-select baamang" onchange="setMap('baamang',this)">
+										<option value="asset/img/printmap/kotim/baamang1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/kotim/baamang2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/kotim/baamang.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Seranau</p>
+									<select class="form-select seranau" onchange="setMap('seranau',this)">
+										<option value="asset/img/printmap/kotim/seranau1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/kotim/seranau2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/kotim/seranau.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Bukit Santuai</p>
+									<select class="form-select bukitsantuai" onchange="setMap('bukitsantuai',this)">
+										<option value="asset/img/printmap/kotim/bukitsantuai1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/kotim/bukitsantuai2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/kotim/bukitsantuai.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Telaga Antang</p>
+									<select class="form-select telagaantang" onchange="setMap('telagaantang',this)">
+										<option value="asset/img/printmap/kotim/telagaantang1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/kotim/telagaantang2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/kotim/telagaantang.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Cempaga</p>
+									<select class="form-select cempaga" onchange="setMap('cempaga',this)">
+										<option value="asset/img/printmap/kotim/cempaga1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/kotim/cempaga2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/kotim/cempaga.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Telawang</p>
+									<select class="form-select telawang" onchange="setMap('telawang',this)">
+										<option value="asset/img/printmap/kotim/telawang1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/kotim/telawang2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/kotim/telawang.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Cempaga Hulu</p>
+									<select class="form-select cempagahulu" onchange="setMap('cempagahulu',this)">
+										<option value="asset/img/printmap/kotim/cempagahulu1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/kotim/cempagahulu2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/kotim/cempagahulu.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Teluk Sampit</p>
+									<select class="form-select teluksampit" onchange="setMap('teluksampit',this)">
+										<option value="asset/img/printmap/kotim/teluksampit1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/kotim/teluksampit2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/kotim/teluksampit.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Kota Besi</p>
+									<select class="form-select kotabesi" onchange="setMap('kotabesi',this)">
+										<option value="asset/img/printmap/kotim/kotabesi1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/kotim/kotabesi2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/kotim/kotabesi.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Tualan Hulu</p>
+									<select class="form-select tualanhulu" onchange="setMap('tualanhulu',this)">
+										<option value="asset/img/printmap/kotim/tualanhulu1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/kotim/tualanhulu2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/kotim/tualanhulu.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Mentawa Baru Ketapang</p>
+									<select class="form-select mentawabaruketapang" onchange="setMap('mentawabaruketapang',this)">
+										<option value="asset/img/printmap/kotim/mentawabaruketapang1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/kotim/mentawabaruketapang2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/kotim/mentawabaruketapang.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Mentaya Hilir Selatan</p>
+									<select class="form-select mentayahilirselatan" onchange="setMap('mentayahilirselatan',this)">
+										<option value="asset/img/printmap/kotim/mentayahilirselatan1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/kotim/mentayahilirselatan2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/kotim/mentayahilirselatan.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Mentaya Hilir Utara</p>
+									<select class="form-select mentayahilirutara" onchange="setMap('mentayahilirutara',this)">
+										<option value="asset/img/printmap/kotim/mentayahilirutara1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/kotim/mentayahilirutara2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/kotim/mentayahilirutara.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Mentaya Hulu</p>
+									<select class="form-select mentayahulu" onchange="setMap('mentayahulu',this)">
+										<option value="asset/img/printmap/kotim/mentayahulu1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/kotim/mentayahulu2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/kotim/mentayahulu.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Parenggean</p>
+									<select class="form-select parenggean" onchange="setMap('parenggean',this)">
+										<option value="asset/img/printmap/kotim/parenggean1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/kotim/parenggean2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/kotim/parenggean.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+							</div>
+						</div>
+
+						<div class="panel-card">
+							<h2 class="panel-title">KABUPATEN SERUYAN</h2>
+							<div class="control-block">
+								<label>Text Method</label>
+								<textarea class="form-control" id="text-method-seruyan" rows="5"></textarea>
+								<div class="d-flex align-items-center gap-2">
+ 									 <div style="max-width: 200px;">
+										<label>Jam</label>
+    									<input type="text" class="form-control" onchange="timeToSet('time-seruyan',this)" id="timeSetSeruyan" value="WIB">
+ 									 </div>
+  										<button class="btn btn-light mt-4" onclick="textToMap('seruyan')">Convert</button>
+								</div>
+							</div>
+							<div class="district-grid">
+								<div class="district-card">
+									<p>Batu Ampar</p>
+									<select class="form-select batuampar" onchange="setMap('batuampar',this)">
+										<option value="asset/img/printmap/seruyan/batuampar1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/seruyan/batuampar2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/seruyan/batuampar.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Danau Seluluk</p>
+									<select class="form-select danauseluluk" onchange="setMap('danauseluluk',this)">
+										<option value="asset/img/printmap/seruyan/danauseluluk1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/seruyan/danauseluluk2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/seruyan/danauseluluk.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Danau Sembuluh</p>
+									<select class="form-select danausembuluh" onchange="setMap('danausembuluh',this)">
+										<option value="asset/img/printmap/seruyan/danausembuluh1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/seruyan/danausembuluh2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/seruyan/danausembuluh.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Hanau</p>
+									<select class="form-select hanau" onchange="setMap('hanau',this)">
+										<option value="asset/img/printmap/seruyan/hanau1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/seruyan/hanau2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/seruyan/hanau.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Seruyan Hilir</p>
+									<select class="form-select seruyanhilir" onchange="setMap('seruyanhilir',this)">
+										<option value="asset/img/printmap/seruyan/seruyanhilir1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/seruyan/seruyanhilir2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/seruyan/seruyanhilir.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Seruyan Hilir Timur</p>
+									<select class="form-select seruyanhilirtimur" onchange="setMap('seruyanhilirtimur',this)">
+										<option value="asset/img/printmap/seruyan/seruyanhilirtimur1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/seruyan/seruyanhilirtimur2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/seruyan/seruyanhilirtimur.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Seruyan Hulu</p>
+									<select class="form-select seruyanhulu" onchange="setMap('seruyanhulu',this)">
+										<option value="asset/img/printmap/seruyan/seruyanhulu1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/seruyan/seruyanhulu2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/seruyan/seruyanhulu.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Seruyan Raya</p>
+									<select class="form-select seruyanraya" onchange="setMap('seruyanraya',this)">
+										<option value="asset/img/printmap/seruyan/seruyanraya1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/seruyan/seruyanraya2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/seruyan/seruyanraya.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Seruyan Tengah</p>
+									<select class="form-select seruyantengah" onchange="setMap('seruyantengah',this)">
+										<option value="asset/img/printmap/seruyan/seruyantengah1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/seruyan/seruyantengah2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/seruyan/seruyantengah.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+								<div class="district-card">
+									<p>Suling Tambun</p>
+									<select class="form-select sulingtambun" onchange="setMap('sulingtambun',this)">
+										<option value="asset/img/printmap/seruyan/sulingtambun1.png">WILAYAH PERINGATAN DINI</option>
+										<option value="asset/img/printmap/seruyan/sulingtambun2.png">WILAYAH POTENSI MELUAS</option>
+										<option value="asset/img/printmap/seruyan/sulingtambun.png" selected>WILAYAH TIDAK TERDAMPAK</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="tab-pane fade" id="view" role="tabpanel" aria-labelledby="view-tab">
+			<div class="dashboard-view-grid">
+				<div class="view-panel">
+					<h3 class="panel-title">PETA KOTIM</h3>
+
+					<div class="map-stage" id="mapStageKotim">	
+
+						<input class="date-overlay" id="date-kotim">
+						<input autocomplete="off" class="time-overlay" type="text" name="time-kotim" placeholder="example : 12.00 - 13.00">
+
+						<img name="antangkalang" class="map" src="asset/img/printmap/kotim/antangkalang.png" alt="">
+						<img name="pulauhanaut" class="map" src="asset/img/printmap/kotim/pulauhanaut.png" alt="">
+						<img name="baamang" class="map" src="asset/img/printmap/kotim/baamang.png" alt="">
+						<img name="seranau" class="map" src="asset/img/printmap/kotim/seranau.png" alt="">
+						<img name="bukitsantuai" class="map" src="asset/img/printmap/kotim/bukitsantuai.png" alt="">
+						<img name="telagaantang" class="map" src="asset/img/printmap/kotim/telagaantang.png" alt="">
+						<img name="cempaga" class="map" src="asset/img/printmap/kotim/cempaga.png" alt="">
+						<img name="telawang" class="map" src="asset/img/printmap/kotim/telawang.png" alt="">
+						<img name="cempagahulu" class="map" src="asset/img/printmap/kotim/cempagahulu.png" alt="">
+						<img name="teluksampit" class="map" src="asset/img/printmap/kotim/teluksampit.png" alt="">
+						<img name="kotabesi" class="map" src="asset/img/printmap/kotim/kotabesi.png" alt="">
+						<img name="tualanhulu" class="map" src="asset/img/printmap/kotim/tualanhulu.png" alt="">
+						<img name="mentawabaruketapang" class="map" src="asset/img/printmap/kotim/mentawabaruketapang.png" alt="">
+						<img name="mentayahilirselatan" class="map" src="asset/img/printmap/kotim/mentayahilirselatan.png" alt="">
+						<img name="mentayahilirutara" class="map" src="asset/img/printmap/kotim/mentayahilirutara.png" alt="">
+						<img name="mentayahulu" class="map" src="asset/img/printmap/kotim/mentayahulu.png" alt="">
+						<img name="parenggean" class="map" src="asset/img/printmap/kotim/parenggean.png" alt="">
+
+					</div>
+				</div>
+
+				<div class="view-panel">
+					<h3 class="panel-title">PETA SERUYAN</h3>
+					<div class="map-stage" id="mapStageSeruyan">
+
+						<input class="date-overlay" type="text" id="date-seruyan">
+						<input autocomplete="off" class="time-overlay" type="text" name="time-seruyan" placeholder="example : 12.00 - 13.00">
+
+							<img name="batuampar" class="map map-seruyan" src="asset/img/printmap/seruyan/batuampar.png" alt="">
+							<img name="danauseluluk" class="map map-seruyan" src="asset/img/printmap/seruyan/danauseluluk.png" alt="">
+							<img name="danausembuluh" class="map map-seruyan" src="asset/img/printmap/seruyan/danausembuluh.png" alt="">
+							<img name="hanau" class="map map-seruyan" src="asset/img/printmap/seruyan/hanau.png" alt="">
+							<img name="seruyanhilir" class="map map-seruyan" src="asset/img/printmap/seruyan/seruyanhilir.png" alt="">
+							<img name="seruyanhilirtimur" class="map map-seruyan" src="asset/img/printmap/seruyan/seruyanhilirtimur.png" alt="">
+							<img name="seruyanhulu" class="map map-seruyan" src="asset/img/printmap/seruyan/seruyanhulu.png" alt="">
+							<img name="seruyanraya" class="map map-seruyan" src="asset/img/printmap/seruyan/seruyanraya.png" alt="">
+							<img name="seruyantengah" class="map map-seruyan" src="asset/img/printmap/seruyan/seruyantengah.png" alt="">
+							<img name="sulingtambun" class="map map-seruyan" src="asset/img/printmap/seruyan/sulingtambun.png" alt="">
+
+					</div>
+				</div>
+			</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="vendor/momentjs/moment-with-locales.js"></script>
+	<script src="vendor/filesaver/FileSaver.js"></script>
+	<script src="vendor/jquery/jquery.min.js"></script>
+	<script src="vendor/bootstrap-5.0.2-dist/bootstrap.bundle.min.js"></script>
+	<script src="vendor/domtoimage/dom-to-image.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="js/index.js"></script>
+	<script src="js/timeHandler.js"></script>
+	<script src="js/districtConfig.js"></script>
+	<script src="js/mapHandler.js"></script>
+	<script src="js/downloadHandler.js"></script>
+	<script src="js/textMethodHandler.js"></script>
+	
+</body>
+
+</html>

@@ -1,0 +1,288 @@
+@font-face {
+  font-family: berlin;
+  src: url("../../BRLNSR.TTF");
+}
+
+:root {
+  --bg: #eef3fa;
+  --panel: #ffffff;
+  --panel-2: #f5f8fc;
+  --line: rgba(15, 23, 42, 0.5);
+  --text: #1e2a3a;
+  --muted: #64748b;
+  --accent: #2f7de1;
+  --accent-2: #22c55e;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: berlin, 'Segoe UI', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 20px;
+  background: linear-gradient(135deg, var(--bg), #f7fafd 60%, #eef3fa);
+  color: var(--text);
+}
+
+button {
+  height: 42px;
+  border: 0;
+  border-radius: 10px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
+.page-shell {
+  max-width: 1500px;
+  margin: 0 auto;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 12px 30px rgba(30, 42, 58, 0.08);
+  margin-bottom: 18px;
+}
+
+.topbar h1 {
+  margin: 0 0 6px;
+  font-size: 28px;
+}
+
+.topbar p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.topbar .btn {
+  background: linear-gradient(135deg, var(--accent), #5aa9ff);
+  color: #fff;
+}
+
+.tab-shell {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  padding: 18px;
+  box-shadow: 0 12px 30px rgba(30, 42, 58, 0.07);
+}
+
+.nav-tabs {
+  border-bottom: 1px solid var(--line);
+}
+
+.nav-tabs .nav-link {
+  color: var(--muted);
+  border: 0;
+  border-radius: 12px 12px 0 0;
+  padding: 10px 16px;
+}
+
+.nav-tabs .nav-link.active {
+  color: white;
+  background: var(--accent);
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  margin-top: 16px;
+}
+
+.panel-card {
+  background: linear-gradient(145deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 18px;
+}
+
+.panel-title {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 14px;
+  color: var(--text);
+}
+
+.control-block {
+  margin-bottom: 14px;
+}
+
+.control-block label,
+.view-toolbar label {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--muted);
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.form-control,
+.form-select {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 10px;
+  border: 1px solid rgba(15, 23, 42, 0.14);
+  background: #ffffff;
+  color: var(--text);
+}
+
+.form-select option {
+  color: #111;
+}
+
+.form-select {
+  margin-bottom: 10px;
+}
+
+textarea.form-control {
+  min-height: 110px;
+  resize: vertical;
+}
+
+.btn-light {
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+}
+
+.district-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.district-card {
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, 0.03);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}
+
+.district-card p {
+  margin: 0 0 6px;
+  color: var(--text);
+  font-size: 15px;
+}
+
+.dashboard-view-grid {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.view-panel {
+  background: linear-gradient(145deg, var(--panel), var(--panel-2));
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 16px;
+  max-width: 100%;
+  overflow-x: auto;
+}
+
+
+/* Wrapper per kabupaten: menjaga ukuran asli 1090x1086 dan jadi
+   titik acuan (containing block) untuk layer kecamatan yang absolute,
+   supaya Kotim & Seruyan tidak saling mempengaruhi posisi. */
+.map-stage {
+  position: relative;
+  width: 1080px;
+  height: 1080px;
+  flex: 0 0 auto; 
+}
+
+#mapStageKotim{
+  background-image: url("images/bg_kotim.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+#mapStageSeruyan{
+  background-image: url("images/bg_seruyan.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Sama persis dengan project KOTIM asli: satu ukuran & offset yang
+   sama untuk semua layer kecamatan, supaya semuanya bertumpuk pas
+   di atas background puzzle-table. Jangan diubah tanpa cek ulang
+   ke project asli. */
+.map-stage .map {
+  position: absolute;
+  width: 500px;
+  transform: translate(15%, 200px);
+}
+
+.map-stage .map.map-kotim {
+    width: 500px;
+    transform: translate(15%,200px);
+}
+
+/* Aset Seruyan sekarang sudah di-crop ke jendela yang seragam
+   (2114x1803, hasil kalibrasi manual di Canva) - jadi cuma butuh
+   satu skala+offset sederhana, mirip perlakuan Kotim. */
+.map-stage .map.map-seruyan {
+    width: 548px;
+    transform: translate(15%,220px);
+}
+
+
+.date-overlay{
+  position: absolute;
+  top: 258px;
+  left: 768px;
+  width: 180px;
+  color: white;
+  border: none;
+  background: transparent;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.time-overlay{
+  position: absolute;
+  top: 428px;
+  left: 740px;
+  width: 280px;
+  border: none;
+  background: transparent;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+
+@media (max-width: 1100px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  body {
+    padding: 12px;
+  }
+
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .district-grid {
+    grid-template-columns: 1fr;
+  }
+}

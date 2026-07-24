@@ -265,6 +265,15 @@ textarea.form-control {
   font-weight: bold;
 }
 
+.app-footer {
+  text-align: center;
+  margin-top: 18px;
+  padding: 10px 0;
+  color: var(--muted);
+  font-size: 13px;
+  letter-spacing: 0.03em;
+}
+
 
 @media (max-width: 1100px) {
   .dashboard-grid {

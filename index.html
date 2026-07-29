@@ -3,7 +3,7 @@
 <head>
 	<title>Web Peringatan Dini BMKG KOTIM</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="icon" href="images/LogoBMKG.png" type="image/x-icon">
+	<link rel="icon" href="images/LogoBMKG.png	" type="image/x-icon	">
 	<link rel="icon" href="https://cdn.bmkg.go.id/Web/Logo-BMKG-new.png">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
 		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
@@ -15,7 +15,7 @@
 		<div class="topbar">
 			<div>
 				<h1>Dashboard Peringatan Dini BMKG</h1>
-				<p>Monitoring wilayah kabupaten Kotawaringin Timur dan kabupaten Seruyan secara bersamaan</p>
+				<p>Monitoring wilayah KOTIM dan Seruyan secara bersamaan</p>
 			</div>
 			<button id="download" class="btn btn-light">Download</button>
 		</div>
@@ -34,21 +34,27 @@
 
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade show active" id="form" role="tabpanel" aria-labelledby="form-tab">
+
+					<div class="panel-card shared-control-card">
+						<h2 class="panel-title text-center">Text Method 
+							(Berlaku untuk KOTIM &amp; Seruyan)</h2>
+						<div class="control-block shared-control-block">
+							<label class="text-center">Text Method</label>
+							<textarea class="form-control text-method-input" id="text-method-shared" rows="6" placeholder="Tempel (paste) teks Peringatan Dini BMKG dari WhatsApp di sini..."></textarea>
+
+							<div class="d-flex align-items-end justify-content-center gap-2 flex-wrap">
+								<div style="max-width: 240px;">
+									<label class="text-center">Jam</label>
+									<input type="text" class="form-control text-center" onchange="applyJamToAll(this)" id="timeSet" placeholder="Terisi otomatis dari teks">
+								</div>
+								<button class="btn btn-light mt-4" onclick="textToMap()">Convert</button>
+							</div>
+						</div>
+					</div>
+
 					<div class="dashboard-grid">
 						<div class="panel-card">
 							<h2 class="panel-title">KABUPATEN KOTIM</h2>
-							<div class="control-block">
-								<label>Text Method</label>
-								<textarea class="form-control" id="text-method-kotim" rows="5"></textarea>
-
-								<div class="d-flex align-items-center gap-2">
- 									 <div style="max-width: 200px;">
-										<label>Jam</label>
-    									<input type="text" class="form-control" onchange="timeToSet('time-kotim',this)" id="timeSet" value="WIB">
- 									 </div>
-  										<button class="btn btn-light mt-4" onclick="textToMap('kotim')">Convert</button>
-								</div>
-							</div>
 							<div class="district-grid">
 								<div class="district-card">
 									<p>Antang Kalang</p>
@@ -192,17 +198,6 @@
 
 						<div class="panel-card">
 							<h2 class="panel-title">KABUPATEN SERUYAN</h2>
-							<div class="control-block">
-								<label>Text Method</label>
-								<textarea class="form-control" id="text-method-seruyan" rows="5"></textarea>
-								<div class="d-flex align-items-center gap-2">
- 									 <div style="max-width: 200px;">
-										<label>Jam</label>
-    									<input type="text" class="form-control" onchange="timeToSet('time-seruyan',this)" id="timeSetSeruyan" value="WIB">
- 									 </div>
-  										<button class="btn btn-light mt-4" onclick="textToMap('seruyan')">Convert</button>
-								</div>
-							</div>
 							<div class="district-grid">
 								<div class="district-card">
 									<p>Batu Ampar</p>

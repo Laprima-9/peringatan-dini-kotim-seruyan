@@ -121,6 +121,32 @@ button:hover {
   margin-bottom: 14px;
 }
 
+/* Text Method tunggal yang berlaku untuk KOTIM & Seruyan sekaligus,
+   diposisikan terpusat di atas kedua panel kabupaten. */
+.shared-control-card {
+  max-width: 720px;
+  margin: 0 auto 20px;
+  text-align: center;
+}
+
+.shared-control-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.shared-control-block label {
+  width: 100%;
+}
+
+.text-method-input {
+  text-align: center;
+}
+
+.text-method-input::placeholder {
+  text-align: center;
+}
+
 .control-block label,
 .view-toolbar label {
   display: block;
@@ -207,13 +233,13 @@ textarea.form-control {
 }
 
 #mapStageKotim{
-  background-image: url("images/bg_kotim.png");
+  background-image: url("images/BGKotimv2.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 #mapStageSeruyan{
-  background-image: url("images/bg_seruyan.png");
+  background-image: url("images/BGSeruyanv2.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
@@ -244,7 +270,7 @@ textarea.form-control {
 
 .date-overlay{
   position: absolute;
-  top: 258px;
+  top: 263px;
   left: 768px;
   width: 180px;
   color: white;
@@ -256,13 +282,14 @@ textarea.form-control {
 
 .time-overlay{
   position: absolute;
-  top: 428px;
+  top: 441px;
   left: 740px;
   width: 280px;
   border: none;
   background: transparent;
   font-size: 28px;
   font-weight: bold;
+  color:#39393A;
 }
 
 .app-footer {

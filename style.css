@@ -67,7 +67,7 @@ button:hover {
 }
 
 .topbar .btn {
-  background: linear-gradient(135deg, var(--accent), #5aa9ff);
+  background: var(--accent);
   color: #fff;
 }
 
@@ -270,7 +270,7 @@ textarea.form-control {
 
 .date-overlay{
   position: absolute;
-  top: 263px;
+  top: 253px;
   left: 768px;
   width: 180px;
   color: white;
@@ -289,7 +289,7 @@ textarea.form-control {
   background: transparent;
   font-size: 28px;
   font-weight: bold;
-  color:#39393A;
+  color: #220C10;
 }
 
 .app-footer {

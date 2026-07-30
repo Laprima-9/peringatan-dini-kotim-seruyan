@@ -233,13 +233,13 @@ textarea.form-control {
 }
 
 #mapStageKotim{
-  background-image: url("images/BGKotimv2.png");
+  background-image: url("images/BGKotimv3.png");
   background-size: cover;
   background-repeat: no-repeat;
 }
 
 #mapStageSeruyan{
-  background-image: url("images/BGSeruyanv2.png");
+  background-image: url("images/BGSeruyanv3.png");
   background-size: cover;
   background-repeat: no-repeat;
 }

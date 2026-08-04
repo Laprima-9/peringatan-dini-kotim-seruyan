@@ -271,19 +271,20 @@ textarea.form-control {
 .date-overlay{
   position: absolute;
   top: 253px;
-  left: 768px;
-  width: 180px;
+  left: 713px;
+  width: 290px;
   color: white;
   border: none;
   background: transparent;
   font-size: 30px;
   font-weight: bold;
+  text-align: center;  
 }
 
 .time-overlay{
   position: absolute;
   top: 441px;
-  left: 740px;
+  left: 750px;
   width: 280px;
   border: none;
   background: transparent;

@@ -30,6 +30,10 @@
 					<button class="nav-link" id="view-tab" data-bs-toggle="tab" data-bs-target="#view" type="button" role="tab"
 						aria-controls="view" aria-selected="false">View</button>
 				</li>
+				<li class="nav-item" role="presentation">
+					<button class="nav-link" id="upd-tab" data-bs-toggle="tab" data-bs-target="#upd" type="button" role="tab"
+						aria-controls="upd" aria-selected="false">UPD</button>
+				</li>
 			</ul>
 
 			<div class="tab-content" id="myTabContent">
@@ -336,9 +340,24 @@
 					</div>
 				</div>
 			</div>
+			</div>
+
+			<div class="tab-pane fade" id="upd" role="tabpanel" aria-labelledby="upd-tab">
+				<div class="panel-card">
+					<h2 class="panel-title text-center">Hasil UPD (Update Peringatan Dini)</h2>
+					<div class="control-block shared-control-block">
+						<label class="text-center">(siap upload ke stamet.bmkgkotim.id)</label>
+						<label class="text-center">Teks UPD</label>
+						<textarea class="form-control text-method-input" id="upd-result" rows="10" placeholder="Hasil UPD akan muncul di sini setelah tombol Convert pada tab Form diklik..." readonly></textarea>
+
+						<div class="d-flex align-items-center justify-content-center gap-2 flex-wrap">
+							<button class="btn btn-light mt-2" id="copy-upd-btn" onclick="copyUpdResult()">Copy</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 
 		<footer class="app-footer">
 			© 2026 Agvenditan Laprima
@@ -356,8 +375,9 @@
 	<script src="js/districtConfig.js"></script>
 	<script src="js/mapHandler.js"></script>
 	<script src="js/downloadHandler.js"></script>
+	<script src="js/updHandler.js"></script>
 	<script src="js/textMethodHandler.js"></script>
 	
 </body>
 
-</html>
+</html>	

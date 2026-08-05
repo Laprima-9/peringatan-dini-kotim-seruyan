@@ -178,3 +178,25 @@ function fallbackCopy(textareaEl, onSuccess, onError) {
 		onError();
 	}
 }
+
+/**
+ * Buka halaman web Update Peringatan Dini BMKG pada tab baru.
+ */
+function openUpdWeb() {
+    const url = 'http://192.168.1.80:8080/peringatan-dini/';
+    // Prefer a direct navigation if popup blockers prevent window.open
+    try {
+        const newWin = window.open(url, '_blank',);
+        if (!newWin) {
+            // fallback: navigate current window
+            window.location.href = url;
+        }
+    } catch (e) {
+        Swal.fire({
+            title: 'Gagal membuka halaman',
+            text: `Silahkan kunjungi ${url} secara manual.`,
+            icon: 'error',
+            confirmButtonColor: '#3085d6',
+        });
+    }
+}

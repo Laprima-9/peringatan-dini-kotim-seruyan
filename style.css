@@ -147,6 +147,19 @@ button:hover {
   text-align: center;
 }
 
+#upd-result {
+  max-width: 620px;
+  min-height: 420px;
+  border-radius: 24px;
+  text-align: left;
+  line-height: 1.5;
+  font-size: 1.04rem;
+}
+
+#upd-result::placeholder {
+  text-align: left;
+}
+
 .control-block label,
 .view-toolbar label {
   display: block;

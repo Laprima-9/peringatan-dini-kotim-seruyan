@@ -30,6 +30,11 @@ function textToMap() {
 	});
 
 	applyExtractedTime(textRaw);
+
+	// Fitur baru: buat hasil teks UPD (tidak mengubah alur lama di atas)
+	if (typeof renderUpdResult === 'function') {
+		renderUpdResult(textRaw);
+	}
 }
 
 function applyRegionFromText(textOri, config) {

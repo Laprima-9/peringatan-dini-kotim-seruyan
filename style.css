@@ -336,3 +336,29 @@ textarea.form-control {
     grid-template-columns: 1fr;
   }
 }
+
+
+/* Header panel: judul + tombol download per kabupaten (di luar .map-stage,
+   jadi tidak ikut ter-capture ke gambar). */
+.panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.panel-header .panel-title {
+  margin: 0;
+}
+
+.download-single {
+  background: var(--accent);
+  color: #fff;
+  padding: 0 16px;
+  white-space: nowrap;
+}
+
+.download-single:disabled {
+  opacity: 0.6;
+}

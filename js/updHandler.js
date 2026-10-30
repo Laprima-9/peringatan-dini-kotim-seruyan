@@ -21,11 +21,20 @@ function generateUpdText(rawText) {
 
     if (!rawText) return '';
 
+    // PENTING: asterisk (*bold*) belum dibuang di tahap ini. Label
+    // kabupaten/kota asli pada pesan WA BMKG SELALU dibungkus utuh oleh
+    // sepasang asterisk, termasuk tanda titik duanya - contoh persis:
+    // "*Kabupaten Kotawaringin Timur:*" atau "*Kota Palangkaraya:*".
+    // Nama kecamatan di dalam daftar TIDAK PERNAH dibungkus asterisk.
+    // Pembatas blok kabupaten di bawah memanfaatkan ciri ini, bukan
+    // posisi baris baru - supaya tetap benar baik pesan WA ditempel
+    // dengan baris baru asli maupun menyambung jadi satu paragraf, dan
+    // supaya kecamatan yang kebetulan diawali kata "Kota" (mis. "Kota
+    // Besi" di Kotim) tidak pernah salah terbaca sebagai kabupaten baru.
     let text = rawText
         .replace(/\r/g, '')
-        .replace(/\*/g, '')
         .replace(
-            /UPDATE\s+Peringatan\s+Dini\s+Cuaca\s+Kalimantan\s+Tengah\s*/i,
+            /\*?UPDATE\s+Peringatan\s+Dini\s+Cuaca\s+Kalimantan\s+Tengah\*?\s*/i,
             ''
         )
         .replace(/\btgl\b/gi, 'Tanggal')
@@ -33,29 +42,42 @@ function generateUpdText(rawText) {
         .replace(/\bpkl\b/gi, 'pukul')
         .trim();
 
-    // Pisah bagian "Dan dapat meluas ke wilayah"
-    const splitMarker = /Dan dapat meluas ke\s*wilayah/i;
+    // Pisah bagian "Dan dapat meluas ke wilayah" (asterisk biasanya cuma
+    // membungkus "Dan dapat meluas ke", kata "wilayah" di luar asterisk).
+    const splitMarker = /\*?Dan dapat meluas ke\*?\s*wilayah/i;
 
     const parts = text.split(splitMarker);
 
     const beforeExpand = parts[0] || '';
     const afterExpand = parts[1] || '';
 
-    // Ambil penutup
+    // Ambil penutup (asterisk biasanya cuma membungkus kalimat
+    // "Kondisi ini diperkirakan masih akan berlangsung").
     const tailMatch =
-        afterExpand.match(/Kondisi ini diperkirakan[\s\S]*$/i);
+        afterExpand.match(/\*?Kondisi ini diperkirakan[\s\S]*$/i);
 
     const tailText =
-        tailMatch ? tailMatch[0].trim() : '';
+        tailMatch ? tailMatch[0].replace(/\*/g, '').trim() : '';
 
     const expandBody =
         tailMatch
             ? afterExpand.slice(0, tailMatch.index)
             : afterExpand;
 
-    // Filter wilayah hanya pada bagian meluas
-    const regionRegex =
-        /Kabupaten\s+([^:]+):\s*([^]*?)(?=Kabupaten\s+[^:]+:|Kota\s+[^:]+:|$)/gi;
+    // Cari semua label "*Kabupaten X:*" / "*Kota X:*" di expandBody
+    // berdasarkan pembungkus asterisknya, lalu ambil isi tiap blok dari
+    // akhir satu label sampai awal label berikutnya (atau akhir teks).
+    const labelRegex = /\*(Kabupaten|Kota)\s+([^:*]+):\*/g;
+
+    const labels = [];
+    let labelMatch;
+    while ((labelMatch = labelRegex.exec(expandBody)) !== null) {
+        labels.push({
+            start: labelMatch.index,
+            name: labelMatch[2].trim(),
+            contentStart: labelRegex.lastIndex,
+        });
+    }
 
     const allowed = [
         'Kotawaringin Timur',
@@ -63,34 +85,35 @@ function generateUpdText(rawText) {
         'Seruyan'
     ];
 
-    const keptRegions = [];
     const hasDanSekitarnya = /dan sekitarnya/i.test(afterExpand);
 
-    let match;
+    // Isi tiap blok kabupaten = dari akhir label ini sampai AWAL label
+    // berikutnya (siapa pun kabupatennya, diizinkan atau tidak) - supaya
+    // kabupaten yang tidak diizinkan di antaranya tetap jadi pembatas
+    // yang benar, bukan ikut tertelan ke kabupaten sebelumnya.
+    const regionLines = [];
+    labels.forEach((label, idx) => {
+        if (!allowed.includes(label.name)) return;
 
-    while ((match = regionRegex.exec(expandBody)) !== null) {
+        const nextLabel = labels[idx + 1];
+        const end = nextLabel ? nextLabel.start : expandBody.length;
 
-        const regionName = match[1].trim();
-
-        if (!allowed.includes(regionName))
-            continue;
-
-        let content = match[2]
+        let content = expandBody
+            .slice(label.contentStart, end)
+            .replace(/\*/g, '')
             .replace(/\s+/g, ' ')
             .replace(/,?\s*dan sekitarnya\.?/i, '')
             .trim();
 
-        keptRegions.push(
-            `Kabupaten ${regionName}: ${content}`
-        );
-    }
+        regionLines.push(`Kabupaten ${label.name}: ${content}`);
+    });
 
-    let result = beforeExpand.trim();
+    let result = beforeExpand.replace(/\*/g, '').trim();
 
-    if (keptRegions.length) {
-        const regionText = keptRegions
+    if (regionLines.length) {
+        const regionText = regionLines
             .map((line, idx) => {
-                const isLast = idx === keptRegions.length - 1;
+                const isLast = idx === regionLines.length - 1;
                 return line + (isLast ? (hasDanSekitarnya ? ' dan sekitarnya.' : '') : '');
             })
             .join('\n');
